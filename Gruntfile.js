@@ -31,6 +31,12 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+    cssmin: {
+        options: {
+            advanced: false
+        }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -303,8 +309,8 @@ module.exports = function (grunt) {
       dist: {
         options: {
           collapseWhitespace: true,
-          conservativeCollapse: true,
-          collapseBooleanAttributes: true,
+          conservativeCollapse: false,
+          collapseBooleanAttributes: false,
           removeCommentsFromCDATA: true
         },
         files: [{

@@ -21,7 +21,6 @@ angular
   ])
   .config(function ($routeProvider, TabletopProvider) {
 
-    // Tabletop setup...
     TabletopProvider.setTabletopOptions({
       key: '1pwPoKkIzwox4LBgpnCr2tIsaNLeqFFA1U5VsuWwLJqg',
       simpleSheet: true,
