@@ -37,10 +37,10 @@ angular
           tabletopData: 'Tabletop'
         }
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about',
+      .when('/interactivo', {
+        templateUrl: 'views/interactivo.html',
+        controller: 'InteractivoCtrl',
+        controllerAs: 'interactivo',
         resolve: {
           tabletopData: 'Tabletop'
         },

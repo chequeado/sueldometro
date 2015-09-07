@@ -8,7 +8,7 @@
  * Controller of the sueldometroApp
  */
 angular.module('sueldometroApp')
-  .controller('AboutCtrl', function () {
+  .controller('InteractivoCtrl', function () {
 
   	
 
