@@ -1,22 +1,37 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/about">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1>El sueldo del Gobernador y el de los legisladores aumentó 500% en 5 años</h1>
+    <p class="lead">Es lo que surge del Salariómetro, una herramienta interactiva que permite comparar la evolución de los salarios en Mendoza en los últimos 5 años.</p>
+  </div>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+<div class="row">
+  <div class="col-sm-12">
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+    <table class="table table-striped" ng-table="tableParams" class="table">
+        <tr ng-repeat="d in $data">
+            <td data-title="'Profesion'" sortable="'profesion'">
+                {{d.profesion}}
+            </td>
+            <td class="text-right" data-title="'2011'" sortable="'ano_2011'">
+                {{d.ano_2011}}
+            </td>
+            <td class="text-right" data-title="'2012'" sortable="'ano_2012'">
+                {{d.ano_2012}}
+            </td>
+            <td class="text-right" data-title="'2013'" sortable="'ano_2013'">
+                {{d.ano_2013}}
+            </td>
+            <td class="text-right" data-title="'2014'" sortable="'ano_2014'">
+                {{d.ano_2014}}
+            </td>
+            <td class="text-right" data-title="'2015'" sortable="'ano_2015'">
+                {{d.ano_2015}}
+            </td>
+        </tr>
+    </table>
+
+  </div>
 </div>
