@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'times.tabletop',
-    'ngTable'
+    'ngTable',
+    'chart.js'
   ])
   .config(function ($routeProvider, TabletopProvider) {
 
@@ -47,4 +48,14 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .directive('integer', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, ele, attr, ctrl){
+            ctrl.$parsers.unshift(function(viewValue){
+                return parseInt(viewValue, 10);
+            });
+        }
+    };
   });

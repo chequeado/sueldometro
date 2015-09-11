@@ -10,13 +10,13 @@
 angular.module('sueldometroApp')
   .controller('MainCtrl', function ($scope,$filter,tabletopData, ngTableParams) {
 
-  		var data = tabletopData[0];
+  		var data = angular.copy(tabletopData[0]);
 
 		$scope.tableParams = new ngTableParams({
 	        page: 1,            // show first page
 	        count: data.length,          // count per page
 	        sorting: {
-	            profesion: 'asc'     // initial sorting
+	            titulo: 'asc'     // initial sorting
 	        }
 	    }, {
 	        total: data.length, // length of data

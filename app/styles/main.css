@@ -59,3 +59,8 @@ body {
   margin-top: 28px;
 }
 
+table .user-data {
+  font-weight: bold;
+  color: #fa9d3e;
+  font-size: 15px;
+}
