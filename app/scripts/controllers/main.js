@@ -8,24 +8,25 @@
  * Controller of the sueldometroApp
  */
 angular.module('sueldometroApp')
-  .controller('MainCtrl', function ($scope,$filter,tabletopData, ngTableParams) {
+  .controller('MainCtrl', function ($scope,$filter,TabletopService, ngTableParams) {
 
-  		var data = angular.copy(tabletopData[0]);
 
-		$scope.tableParams = new ngTableParams({
-	        page: 1,            // show first page
-	        count: data.length,          // count per page
-	        sorting: {
-	            titulo: 'asc'     // initial sorting
-	        }
-	    }, {
-	        total: data.length, // length of data
-	        counts:[],
-	        getData: function($defer, params) {
-	            var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()):data;
-	            $defer.resolve(orderedData);
-	        }
-	    });
-
+		TabletopService.getData().then(function(info){
+         	$scope.data = info;
+          	$scope.tableParams = new ngTableParams({
+		        page: 1,            // show first page
+		        count: $scope.data.length,          // count per page
+		        sorting: {
+		            titulo: 'asc'     // initial sorting
+		        }
+		    }, {
+		        total: $scope.data.length, // length of data
+		        counts:[],
+		        getData: function($defer, params) {
+		            var orderedData = params.sorting() ? $filter('orderBy')($scope.data, params.orderBy()):$scope.data;
+		            $defer.resolve(orderedData);
+		        }
+		    });
+        });
 
   });

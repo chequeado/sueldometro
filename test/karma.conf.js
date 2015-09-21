@@ -31,11 +31,10 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/tabletop/src/tabletop.js',
-      'bower_components/angular-tabletop/TabletopProvider.js',
       'bower_components/ng-table/dist/ng-table.min.js',
       'bower_components/Chart.js/Chart.js',
       'bower_components/angular-chart.js/dist/angular-chart.js',
+      'bower_components/tabletop/src/tabletop.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -1,122 +1,124 @@
+<div ng-controller="InteractivoCtrl">
 
-<div class="row">
-  <div class="col-sm-12">
-	<h1>Aplicación interactiva</h1>
-  </div>
-</div>
+	<div class="row">
+      <div class="col-sm-12">
+        <h1>Interactivo:</h1>
+      </div>
+    </div>
 
+	<div class="row">
+	  <div class="col-sm-12">
 
-<div class="row">
-  <div class="col-sm-12">
+		<form class="form-inline">
+			<fieldset>
 
-	<form class="form-inline">
-		<fieldset>
+			<!-- Form Name -->
+			<legend></legend>
 
-		<!-- Form Name -->
-		<legend></legend>
+				<div class="row">
 
-			<div class="row">
+					<div class="col-sm-2">
+						Completa los datos de tu salario >>
+					</div>
 
-				<div class="col-sm-2">
-					Completa los datos de tu salario >>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput1">2011</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2011">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput2">2012</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput2" name="textinput2" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2012">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput3">2013</label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput3" name="textinput3" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2013">
+					  		</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput4">2014</label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput4" name="textinput4" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2014">
+					  		</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput5">2015</label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput5" name="textinput5" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2015">
+					  		</div>
+					  	</div>
+					</div>
+
 				</div>
 
-				<div class="col-sm-2">
-					<div class="form-group">
-						<label for="textinput1">2011</label>
-						<div class="input-group">
-						  	<span class="input-group-addon" id="basic-addon1">$</span>
-							<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2011">
-						</div>
-				  	</div>
-				</div>
-
-				<div class="col-sm-2">
-					<div class="form-group">
-						<label for="textinput2">2012</label>
-						<div class="input-group">
-						  	<span class="input-group-addon" id="basic-addon1">$</span>
-							<input id="textinput2" name="textinput2" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2012">
-						</div>
-				  	</div>
-				</div>
-
-				<div class="col-sm-2">
-					<div class="form-group">
-						<label for="textinput3">2013</label>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1">$</span>
-							<input id="textinput3" name="textinput3" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2013">
-				  		</div>
-				  	</div>
-				</div>
-
-				<div class="col-sm-2">
-					<div class="form-group">
-						<label for="textinput4">2014</label>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1">$</span>
-							<input id="textinput4" name="textinput4" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2014">
-				  		</div>
-				  	</div>
-				</div>
-
-				<div class="col-sm-2">
-					<div class="form-group">
-						<label for="textinput5">2015</label>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1">$</span>
-							<input id="textinput5" name="textinput5" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2015">
-				  		</div>
-				  	</div>
-				</div>
-
-			</div>
-
-		</fieldset>
-	</form>
+			</fieldset>
+		</form>
 
 
-  </div>
-</div>
-
-<hr/>
-
-<div class="row">
-  <div class="col-sm-12">
-
-    <table class="table table-striped" ng-table="tableParams" class="table">
-        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
-            <td data-title="'Título'" data-sortable="'titulo'">
-                {{d.titulo}}
-            </td>
-            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
-                <span ng-show="d.ano_2011">$ {{d.ano_2011}}</span>
-            </td>
-            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
-                <span ng-show="d.ano_2012">$ {{d.ano_2012}}</span>
-            </td>
-            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
-                <span ng-show="d.ano_2013">$ {{d.ano_2013}}</span>
-            </td>
-            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
-                <span ng-show="d.ano_2014">$ {{d.ano_2014}}</span>
-            </td>
-            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
-                <span ng-show="d.ano_2015">$ {{d.ano_2015}}</span>
-            </td>
-        </tr>
-    </table>
-
-  </div>
-</div>
-
-<div class="row">
-  	<div class="col-sm-12">
-
-		<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options" chart-colours="colors">
-		</canvas>
-
+	  </div>
 	</div>
+
+	<hr/>
+
+	<div class="row">
+	  <div class="col-sm-12">
+
+	    <table class="table table-striped" ng-table="tableParams" class="table">
+	        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
+	            <td data-title="'Título'" data-sortable="'titulo'">
+	                <span class="{{d.icon}}"></span>     {{d.titulo}}
+	            </td>
+	            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
+	                <span ng-show="d.ano_2011">$ {{d.ano_2011}}</span>
+	            </td>
+	            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
+	                <span ng-show="d.ano_2012">$ {{d.ano_2012}}</span>
+	            </td>
+	            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
+	                <span ng-show="d.ano_2013">$ {{d.ano_2013}}</span>
+	            </td>
+	            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
+	                <span ng-show="d.ano_2014">$ {{d.ano_2014}}</span>
+	            </td>
+	            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
+	                <span ng-show="d.ano_2015">$ {{d.ano_2015}}</span>
+	            </td>
+	        </tr>
+	    </table>
+
+	  </div>
+	</div>
+
+	<div class="row">
+	  	<div class="col-sm-12">
+
+			<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options" chart-colours="colors">
+			</canvas>
+
+		</div>
+	</div>
+
 </div>
 

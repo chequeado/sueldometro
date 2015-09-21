@@ -16,38 +16,11 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'times.tabletop',
     'ngTable',
     'chart.js'
   ])
-  .config(function ($routeProvider, TabletopProvider) {
-
-    TabletopProvider.setTabletopOptions({
-      key: '1pwPoKkIzwox4LBgpnCr2tIsaNLeqFFA1U5VsuWwLJqg',
-      simpleSheet: true,
-      parseNumbers: true
-    });
-
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main',
-        resolve: {
-          tabletopData: 'Tabletop'
-        }
-      })
-      .when('/interactivo', {
-        templateUrl: 'views/interactivo.html',
-        controller: 'InteractivoCtrl',
-        controllerAs: 'interactivo',
-        resolve: {
-          tabletopData: 'Tabletop'
-        },
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(function () {
+    //config
   })
   .directive('integer', function(){
     return {
@@ -58,4 +31,29 @@ angular
             });
         }
     };
+  })
+  //URL service
+  .service('TabletopService', function ($q) {
+
+    this.data = false;
+
+    this.getData = function(){
+      var that = this;
+      return $q(function(resolve, reject) {
+        if(!that.data){
+          Tabletop.init( { key: '1pwPoKkIzwox4LBgpnCr2tIsaNLeqFFA1U5VsuWwLJqg',
+                  callback: function(data, tabletop) { 
+                    that.data = data;
+                    resolve(angular.copy(that.data));
+                  },
+                  simpleSheet: true,
+                  parseNumbers: true
+                });
+        } else {
+          resolve(angular.copy(that.data));
+        }
+      });
+    };
+
   });
+

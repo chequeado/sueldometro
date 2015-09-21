@@ -1,37 +1,45 @@
+<div ng-controller="MainCtrl">
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>La información:</h1>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <h1>El sueldo del Gobernador y el de los legisladores aumentó 500% en 5 años</h1>
-    <p class="lead">Es lo que surge del Salariómetro, una herramienta interactiva que permite comparar la evolución de los salarios en Mendoza en los últimos 5 años.<a class="btn btn-success" href="#/interactivo">Ver aplicación interactiva</a></p>
-  </div>
-</div>
 
+    <div class="row">
+      <div class="col-sm-12">
 
-<div class="row">
-  <div class="col-sm-12">
+        <table class="table table-striped" ng-table="tableParams" class="table">
+            <tr ng-repeat="d in $data">
+                <td data-title="'Título'" data-sortable="'titulo'">
+                    <span class="{{d.icon}}"></span>     {{d.titulo}}
+                </td>
+                <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
+                    $ {{d.ano_2011}}
+                </td>
+                <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
+                    $ {{d.ano_2012}}
+                </td>
+                <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
+                    $ {{d.ano_2013}}
+                </td>
+                <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
+                    $ {{d.ano_2014}}
+                </td>
+                <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
+                    $ {{d.ano_2015}}
+                </td>
+                <td class="text-right" data-title="'Índice de crecimiento'" data-sortable="'indice'">
+                    {{d.indice}} %
+                </td>
+                <td class="text-right" data-title="'Índice de crecimiento anual'" data-sortable="'indice_anual'">
+                    {{d.indice_anual}} %
+                </td>
+            </tr>
+        </table>
 
-    <table class="table table-striped" ng-table="tableParams" class="table">
-        <tr ng-repeat="d in $data">
-            <td data-title="'Título'" data-sortable="'titulo'">
-                {{d.titulo}}
-            </td>
-            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
-                $ {{d.ano_2011}}
-            </td>
-            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
-                $ {{d.ano_2012}}
-            </td>
-            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
-                $ {{d.ano_2013}}
-            </td>
-            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
-                $ {{d.ano_2014}}
-            </td>
-            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
-                $ {{d.ano_2015}}
-            </td>
-        </tr>
-    </table>
+      </div>
+    </div>
 
-  </div>
 </div>

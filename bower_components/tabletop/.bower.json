@@ -27,6 +27,7 @@
     "commit": "872b45905c529b29a595b45ab059d25576c67d0f"
   },
   "_source": "git://github.com/jsoma/tabletop.git",
-  "_target": "~1.4.0",
-  "_originalSource": "tabletop"
+  "_target": "~1.4.2",
+  "_originalSource": "tabletop",
+  "_direct": true
 }
