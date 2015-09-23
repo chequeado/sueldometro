@@ -85,40 +85,71 @@
 	<div class="row">
 	  <div class="col-sm-12">
 
-	    <table class="table table-striped" ng-table="tableParams" class="table">
-	        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
-	            <td data-title="'Título'" data-sortable="'titulo'">
-	                <span class="{{d.icon}}"></span>     {{d.titulo}}
-	            </td>
-	            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
-	                <span ng-show="d.ano_2011">$ {{d.ano_2011}}</span>
-	            </td>
-	            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
-	                <span ng-show="d.ano_2012">$ {{d.ano_2012}}</span>
-	            </td>
-	            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
-	                <span ng-show="d.ano_2013">$ {{d.ano_2013}}</span>
-	            </td>
-	            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
-	                <span ng-show="d.ano_2014">$ {{d.ano_2014}}</span>
-	            </td>
-	            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
-	                <span ng-show="d.ano_2015">$ {{d.ano_2015}}</span>
-	            </td>
-	        </tr>
-	    </table>
+	  	<div>
+
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+				<a href="#chart" aria-controls="chart" role="tab" data-toggle="tab" class="btn btn-default">Gráfico</a>
+			</div>
+			<div class="btn-group" role="group">
+				<a href="#table" aria-controls="table" role="tab" data-toggle="tab" class="btn btn-default">Tabla</a>
+			</div>
+			<div class="btn-group" role="group">
+				<a href="#share" aria-controls="share" role="tab" data-toggle="tab" class="btn btn-default">Compartir</a>
+			</div>
+		</div>
+
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    
+		    <div role="tabpanel" class="tab-pane active" id="chart">
+		    	
+		    	<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options" chart-colours="colors">
+				</canvas>
+		    
+		    </div>
+		    
+		    <div role="tabpanel" class="tab-pane" id="table">
+		    
+		    	<table class="table table-striped" ng-table="tableParams" class="table">
+			        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
+			            <td data-title="'Título'" data-sortable="'titulo'">
+			                <span class="{{d.icon}}"></span>     {{d.titulo}}
+			            </td>
+			            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
+			                <span ng-show="d.ano_2011">$ {{d.ano_2011}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
+			                <span ng-show="d.ano_2012">$ {{d.ano_2012}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
+			                <span ng-show="d.ano_2013">$ {{d.ano_2013}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
+			                <span ng-show="d.ano_2014">$ {{d.ano_2014}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
+			                <span ng-show="d.ano_2015">$ {{d.ano_2015}}</span>
+			            </td>
+			        </tr>
+			    </table>
+
+		    </div>
+		    
+
+		    <div role="tabpanel" class="tab-pane" id="share">
+		    	<h1>Tu sueldo aumento un x% en 5 años, mientras que el del Gobernador lo hizo en 500%</h1>
+		    	compartir, tw y fb.
+		    </div>
+		  </div>
+
+		</div>
+
+
 
 	  </div>
 	</div>
 
-	<div class="row">
-	  	<div class="col-sm-12">
-
-			<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options" chart-colours="colors">
-			</canvas>
-
-		</div>
-	</div>
 
 </div>
 
