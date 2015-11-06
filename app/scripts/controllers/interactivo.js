@@ -8,8 +8,9 @@
  * Controller of the sueldometroApp
  */
 angular.module('sueldometroApp')
-  .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams) {
+  .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams,$timeout) {
 
+  	$scope.pymChild = new pym.Child();
 
   	TabletopService.getData().then(function(info){
 
@@ -56,6 +57,13 @@ angular.module('sueldometroApp')
 		$scope.labels = ["2011","2012","2013","2014","2015"];
 		$scope.series = series;
 		$scope.chartData = chartData;
+		$scope.chartHover = function(items,other){
+			console.log(other);
+		};
+
+		$timeout(function(){
+	    	$scope.pymChild.sendHeight();
+      	},500);
 
   	});
 
@@ -73,9 +81,10 @@ angular.module('sueldometroApp')
 		pointDotStrokeWidth: 4
 	};
 
-	$scope.refreshChart = function refreshData(){
+	$scope.refreshChart = function(){
 		var index = $scope.chartData.length-1;
 		$scope.chartData[index] = [$scope.myData.ano_2011,$scope.myData.ano_2012,$scope.myData.ano_2013,$scope.myData.ano_2014,$scope.myData.ano_2015]
+		$scope.pymChild.sendHeight();
 	};
 
 	$scope.colors = ['#EF4F2F','#ffc468','#988b7b','#25bdbe','#c2beab','#9f0026','#88d9f6','86c6b5','#fa9d3e']

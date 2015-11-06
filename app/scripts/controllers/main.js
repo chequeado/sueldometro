@@ -8,8 +8,9 @@
  * Controller of the sueldometroApp
  */
 angular.module('sueldometroApp')
-  .controller('MainCtrl', function ($scope,$filter,TabletopService, ngTableParams) {
+  .controller('MainCtrl', function ($scope,$filter,TabletopService, ngTableParams, $timeout) {
 
+  		$scope.pymChild = new pym.Child();
 
 		TabletopService.getData().then(function(info){
          	$scope.data = info;
@@ -27,6 +28,9 @@ angular.module('sueldometroApp')
 		            $defer.resolve(orderedData);
 		        }
 		    });
+          	$timeout(function(){
+		    	$scope.pymChild.sendHeight();
+          	},500);
         });
 
   });
