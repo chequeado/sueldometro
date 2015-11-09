@@ -2,7 +2,7 @@
   'use strict';
   if (typeof exports === 'object') {
     // Node/CommonJS
-    module.exports = factory(require('angular'), require('chart.js'));
+    module.exports = factory(require('angular'), require('Chart.js'));
   }  else if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['angular', 'chart'], factory);
@@ -193,10 +193,10 @@
             chart = new ChartJs.Chart(ctx)[type](data, options);
             scope.$emit('create', chart);
 
-            ['hover', 'click'].forEach(function (action) {
-              if (scope[action])
-                cvs[action === 'click' ? 'onclick' : 'onmousemove'] = getEventHandler(scope, chart, action);
-            });
+            // Bind events
+            cvs.onclick = scope.click ? getEventHandler(scope, chart, 'click', false) : angular.noop;
+            cvs.onmousemove = scope.hover ? getEventHandler(scope, chart, 'hover', true) : angular.noop;
+
             if (scope.legend && scope.legend !== 'false') setLegend(elem, chart);
           }
 
@@ -227,13 +227,17 @@
       return carry + val;
     }
 
-    function getEventHandler (scope, chart, action) {
+    function getEventHandler (scope, chart, action, triggerOnlyOnChange) {
+      var lastState = null;
       return function (evt) {
         var atEvent = chart.getPointsAtEvent || chart.getBarsAtEvent || chart.getSegmentsAtEvent;
         if (atEvent) {
           var activePoints = atEvent.call(chart, evt);
-          scope[action](activePoints, evt);
-          scope.$apply();
+          if (triggerOnlyOnChange === false || angular.equals(lastState, activePoints) === false) {
+            lastState = activePoints;
+            scope[action](activePoints, evt);
+            scope.$apply();
+          }
         }
       };
     }

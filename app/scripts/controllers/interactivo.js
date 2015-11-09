@@ -8,6 +8,29 @@
  * Controller of the sueldometroApp
  */
 angular.module('sueldometroApp')
+	.directive('numbersOnly', function(){
+	   	return {
+	     require: 'ngModel',
+	     link: function(scope, element, attrs, modelCtrl) {
+	       modelCtrl.$parsers.push(function (inputValue) {
+
+	       		console.log(inputValue);
+
+	           if ( inputValue == undefined || inputValue == '' ) return '';
+	           	           
+	           inputValue = ''+inputValue;
+	           var transformedInput = inputValue.replace(/[^0-9]/g, '');
+
+	           if (transformedInput!=inputValue) {
+	              modelCtrl.$setViewValue(transformedInput);
+	              modelCtrl.$render();
+	           }         
+
+	           return transformedInput;         
+	       });
+	     }
+   		}
+   	})
   .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams,$timeout) {
 
   	$scope.pymChild = new pym.Child();
@@ -15,6 +38,8 @@ angular.module('sueldometroApp')
   	TabletopService.getData().then(function(info){
 
 	  	var data = info;
+
+	  	$scope.variation = false;
 
 	  	$scope.myData = {
 			titulo: "MI SALARIO", 
@@ -46,45 +71,90 @@ angular.module('sueldometroApp')
 	        }
 	    });
 
-		var series = [];
-		var chartData = [];
 
-		angular.forEach(data,function(e){
-			series.push(e.titulo);
-			chartData.push([e.ano_2011,e.ano_2012,e.ano_2013,e.ano_2014,e.ano_2015]);
+		var chartData = {
+			'x': ["2011","2012","2013","2014","2015"]
+		};
+
+		var types = {
+			'Mi SALARIO':'spline'
+		};
+
+		var colors = {
+			'Mi SALARIO':'#000'
+		};
+
+		angular.forEach(data,function(e,i){
+			if(e.ano_2011){
+				chartData[e.titulo] = [e.ano_2011,e.ano_2012,e.ano_2013,e.ano_2014,e.ano_2015];
+				types[e.titulo] = 'spline';
+				colors[e.titulo] = $scope.colors[i];
+			}
+		});
+
+		$scope.chart = c3.generate({
+			bindto: '#chart-container',
+			data: {
+				x: 'x',
+	            json: chartData,
+	            types: types,
+	            //colors: colors
+	        },
+	        size: {
+			  height: 500
+			},
+			axis: {
+			  x: {
+			    padding: {
+			      left: 0.2,
+			      right: 0.2,
+			    }
+			  }
+			},
+			line: {
+			  connectNull: true
+			},
+			tooltip: {
+		        grouped: false,
+		        format: {
+		            value: function (value, ratio, id) {
+		                var format = d3.format('$');
+		                return format(value);
+		            }
+		        }
+		    }
 		});
 
 		$scope.labels = ["2011","2012","2013","2014","2015"];
-		$scope.series = series;
-		$scope.chartData = chartData;
-		$scope.chartHover = function(items,other){
-			console.log(other);
-		};
-
 		$timeout(function(){
 	    	$scope.pymChild.sendHeight();
       	},500);
 
   	});
 
-
 	$scope.valueChanged = function(){
 		$scope.tableParams.reload();
 		$scope.refreshChart();
-	};
-
-
-	$scope.options = {
-		scaleBeginAtZero: true,
-		datasetFill : false,
-		pointDotRadius: 8,
-		pointDotStrokeWidth: 4
+		$scope.changeVariation();
 	};
 
 	$scope.refreshChart = function(){
-		var index = $scope.chartData.length-1;
-		$scope.chartData[index] = [$scope.myData.ano_2011,$scope.myData.ano_2012,$scope.myData.ano_2013,$scope.myData.ano_2014,$scope.myData.ano_2015]
+		$scope.chart.load({
+	        columns: [
+		        ['Mi SALARIO', $scope.myData.ano_2011,$scope.myData.ano_2012,$scope.myData.ano_2013,$scope.myData.ano_2014,$scope.myData.ano_2015]
+	        ]
+	    });
 		$scope.pymChild.sendHeight();
+	};
+
+	$scope.changeVariation = function(){
+		console.log($scope.myData);
+		if($scope.myData.ano_2011 && $scope.myData.ano_2015 && $scope.myData.ano_2011!='' && $scope.myData.ano_2015!=''){
+			$scope.variation = true;
+			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2011 )-100;
+		} else {
+			$scope.variation = false;
+		}
 	};
 
 	$scope.colors = ['#EF4F2F','#ffc468','#988b7b','#25bdbe','#c2beab','#9f0026','#88d9f6','86c6b5','#fa9d3e']

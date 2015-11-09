@@ -64,3 +64,18 @@ table .user-data {
   color: #fa9d3e;
   font-size: 15px;
 }
+
+.c3-chart-line .c3-line{
+  stroke-width: 2px;
+}
+.c3-chart-line .c3-circle{
+  stroke-width: 3px;
+}
+
+.c3-chart-line .c3-line-Mi-SALARIO{
+  stroke-width: 5px;
+}
+
+.c3-chart-line .c3-line-Salario-mínimo--vital-y-móvil{
+  stroke-width: 5px;
+}

@@ -18,7 +18,7 @@
 				<div class="row">
 
 					<div class="col-sm-2">
-						Completa los datos de tu salario >>
+						Completa los datos de tu salario mensual aproximado >>
 					</div>
 
 					<div class="col-sm-2">
@@ -26,7 +26,7 @@
 							<label for="textinput1">2011</label>
 							<div class="input-group">
 							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2011">
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2011">
 							</div>
 					  	</div>
 					</div>
@@ -36,7 +36,7 @@
 							<label for="textinput2">2012</label>
 							<div class="input-group">
 							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput2" name="textinput2" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2012">
+								<input id="textinput2" name="textinput2" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2012">
 							</div>
 					  	</div>
 					</div>
@@ -46,7 +46,7 @@
 							<label for="textinput3">2013</label>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput3" name="textinput3" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2013">
+								<input id="textinput3" name="textinput3" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2013">
 					  		</div>
 					  	</div>
 					</div>
@@ -56,7 +56,7 @@
 							<label for="textinput4">2014</label>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput4" name="textinput4" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2014">
+								<input id="textinput4" name="textinput4" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2014">
 					  		</div>
 					  	</div>
 					</div>
@@ -66,7 +66,7 @@
 							<label for="textinput5">2015</label>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput5" name="textinput5" placeholder="" class="form-control input-md" type="number" step="1000" ng-keyup="checkNumber($event)" ng-change="valueChanged()" integer min="0" maxlength="5" max="100000" ng-model="myData.ano_2015">
+								<input id="textinput5" name="textinput5" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2015">
 					  		</div>
 					  	</div>
 					</div>
@@ -104,8 +104,7 @@
 		    
 		    <div role="tabpanel" class="tab-pane active" id="chart">
 		    	
-		    	<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="options" chart-colours="colors" chart-hover="chartHover">
-				</canvas>
+		    	<div id="chart-container"></div>
 		    
 		    </div>
 		    
@@ -117,19 +116,19 @@
 			                <span class="{{d.icon}}"></span>     {{d.titulo}}
 			            </td>
 			            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
-			                <span ng-show="d.ano_2011">$ {{d.ano_2011}}</span>
+			                <span ng-show="d.ano_2011">${{d.ano_2011}}</span>
 			            </td>
 			            <td class="text-right" data-title="'2012'" data-sortable="'ano_2012'">
-			                <span ng-show="d.ano_2012">$ {{d.ano_2012}}</span>
+			                <span ng-show="d.ano_2012">${{d.ano_2012}}</span>
 			            </td>
 			            <td class="text-right" data-title="'2013'" data-sortable="'ano_2013'">
-			                <span ng-show="d.ano_2013">$ {{d.ano_2013}}</span>
+			                <span ng-show="d.ano_2013">${{d.ano_2013}}</span>
 			            </td>
 			            <td class="text-right" data-title="'2014'" data-sortable="'ano_2014'">
-			                <span ng-show="d.ano_2014">$ {{d.ano_2014}}</span>
+			                <span ng-show="d.ano_2014">${{d.ano_2014}}</span>
 			            </td>
 			            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
-			                <span ng-show="d.ano_2015">$ {{d.ano_2015}}</span>
+			                <span ng-show="d.ano_2015">${{d.ano_2015}}</span>
 			            </td>
 			        </tr>
 			    </table>
@@ -138,8 +137,14 @@
 		    
 
 		    <div role="tabpanel" class="tab-pane" id="share">
-		    	<h1>Tu sueldo aumento un x% en 5 años, mientras que el del Gobernador lo hizo en 500%</h1>
-		    	compartir, tw y fb.
+		    {{isNaN(variation)}}
+		    	<div ng-hide="isNaN(variation)">
+		    		<h1>Mi sueldo varió un {{variation | number:0}}% en 5 años, mientras que el del Gobernador lo hizo en +500%</h1>
+		    		<p>compartir, tw y fb.</p>
+		    	</div>
+		    	<div ng-show="isNaN(variation)">
+			    	<h1>Complete los datos de su sueldo para poder compartir la conclusión.</h1>
+		    	</div>
 		    </div>
 		  </div>
 
