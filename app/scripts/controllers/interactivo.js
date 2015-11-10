@@ -14,8 +14,6 @@ angular.module('sueldometroApp')
 	     link: function(scope, element, attrs, modelCtrl) {
 	       modelCtrl.$parsers.push(function (inputValue) {
 
-	       		console.log(inputValue);
-
 	           if ( inputValue == undefined || inputValue == '' ) return '';
 	           	           
 	           inputValue = ''+inputValue;
@@ -31,7 +29,10 @@ angular.module('sueldometroApp')
 	     }
    		}
    	})
-  .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams,$timeout) {
+   	.filter('escape', function() {
+    	return window.encodeURIComponent;
+  	})
+  .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams,$timeout,$location) {
 
   	$scope.pymChild = new pym.Child();
 
@@ -53,6 +54,13 @@ angular.module('sueldometroApp')
 			userData: true,
 			icon: 'glyphicon glyphicon-user'
 	  	};
+
+	  	$scope.conclusion = function(){
+	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en 5 años, mientras que el del Gobernador lo hizo en +500%";
+	 	}
+	  	$scope.conclusionShare = function(){
+	  		return $filter('escape')($scope.conclusion()+' vía @unidiversidad_ - '+'http://www.unidiversidad.com.ar/');
+		}
 
 	  	data.push($scope.myData);
 
@@ -148,7 +156,6 @@ angular.module('sueldometroApp')
 	};
 
 	$scope.changeVariation = function(){
-		console.log($scope.myData);
 		if($scope.myData.ano_2011 && $scope.myData.ano_2015 && $scope.myData.ano_2011!='' && $scope.myData.ano_2015!=''){
 			$scope.variation = true;
 			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2011 )-100;

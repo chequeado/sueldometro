@@ -94,9 +94,6 @@
 			<div class="btn-group" role="group">
 				<a href="#table" aria-controls="table" role="tab" data-toggle="tab" class="btn btn-default">Tabla</a>
 			</div>
-			<div class="btn-group" role="group">
-				<a href="#share" aria-controls="share" role="tab" data-toggle="tab" class="btn btn-default">Compartir</a>
-			</div>
 		</div>
 
 		  <!-- Tab panes -->
@@ -136,20 +133,22 @@
 		    </div>
 		    
 
-		    <div role="tabpanel" class="tab-pane" id="share">
-		    {{isNaN(variation)}}
-		    	<div ng-hide="isNaN(variation)">
-		    		<h1>Mi sueldo varió un {{variation | number:0}}% en 5 años, mientras que el del Gobernador lo hizo en +500%</h1>
-		    		<p>compartir, tw y fb.</p>
-		    	</div>
-		    	<div ng-show="isNaN(variation)">
-			    	<h1>Complete los datos de su sueldo para poder compartir la conclusión.</h1>
-		    	</div>
-		    </div>
 		  </div>
 
 		</div>
 
+	    <div class="well well-lg">
+	    	<div ng-show="variation">
+	    		<h1 class="text-center">{{conclusion()}}</h1>
+	    		<p class="text-center">
+	    			<a class="btn btn-default btn-lg" ng-href="https://twitter.com/intent/tweet?text={{conclusionShare()}}" target="_blank">Twitter</a>
+	    			<a class="btn btn-default btn-lg" ng-href="https://www.facebook.com/sharer/sharer.php?u=http://unidiversidad.com.ar" target="_blank">Facebook</a>
+	    		</p>
+	    	</div>
+	    	<div ng-hide="variation">
+		    	<p><strong>COMPARTIR:</strong> Complete los datos de su sueldo para poder compartir la conclusión.</p>
+	    	</div>
+	    </div>
 
 
 	  </div>
