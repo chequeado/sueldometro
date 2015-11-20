@@ -11,7 +11,7 @@
       <div class="col-sm-12">
 
         <table class="table table-striped" ng-table="tableParams" class="table">
-            <tr ng-repeat="d in $data">
+            <tr ng-repeat="d in $data" ng-class="{'user-data':(d.id==9)}">
                 <td data-title="'Título'" data-sortable="'titulo'">
                     <span class="{{d.icon}}"></span>     {{d.titulo}}
                 </td>
