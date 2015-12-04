@@ -56,10 +56,10 @@ angular.module('sueldometroApp')
 	  	};
 
 	  	$scope.conclusion = function(){
-	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en 5 años, mientras que el del Gobernador lo hizo en +500%";
+	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en 5 años, mientras que el del Gobernador lo hizo en +400%";
 	 	}
 	  	$scope.conclusionShare = function(){
-	  		return $filter('escape')($scope.conclusion()+' vía @unidiversidad_ - '+'http://www.unidiversidad.com.ar/');
+	  		return $filter('escape')($scope.conclusion()+' vía @unidiversidad_ - '+'http://www.unidiversidad.com.ar/sueldometro');
 		}
 
 	  	data.push($scope.myData);
@@ -94,7 +94,13 @@ angular.module('sueldometroApp')
 
 		angular.forEach(data,function(e,i){
 			if(e.ano_2011){
-				chartData[e.titulo] = [e.ano_2011,e.ano_2012,e.ano_2013,e.ano_2014,e.ano_2015];
+				chartData[e.titulo] = [
+						parseInt(e.ano_2011),
+						parseInt(e.ano_2012),
+						parseInt(e.ano_2013),
+						parseInt(e.ano_2014),
+						parseInt(e.ano_2015)
+					];
 				types[e.titulo] = 'spline';
 				colors[e.titulo] = $scope.colors[i];
 			}
@@ -149,7 +155,14 @@ angular.module('sueldometroApp')
 	$scope.refreshChart = function(){
 		$scope.chart.load({
 	        columns: [
-		        ['Mi SALARIO', $scope.myData.ano_2011,$scope.myData.ano_2012,$scope.myData.ano_2013,$scope.myData.ano_2014,$scope.myData.ano_2015]
+		        [
+		        'Mi SALARIO', 
+		        ($scope.myData.ano_2011 && $scope.myData.ano_2011 != '')?parseInt($scope.myData.ano_2011):null,
+		        ($scope.myData.ano_2012 && $scope.myData.ano_2012 != '')?parseInt($scope.myData.ano_2012):null,
+		        ($scope.myData.ano_2013 && $scope.myData.ano_2013 != '')?parseInt($scope.myData.ano_2013):null,
+		        ($scope.myData.ano_2014 && $scope.myData.ano_2014 != '')?parseInt($scope.myData.ano_2014):null,
+		        ($scope.myData.ano_2015 && $scope.myData.ano_2015 != '')?parseInt($scope.myData.ano_2015):null
+		        ]
 	        ]
 	    });
 		$scope.pymChild.sendHeight();

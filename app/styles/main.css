@@ -73,9 +73,9 @@ table .user-data {
 }
 
 .c3-chart-line .c3-line-Mi-SALARIO{
-  stroke-width: 5px;
+  stroke-width: 4px;
 }
 
-.c3-chart-line .c3-line-Salario-mínimo--vital-y-móvil{
-  stroke-width: 5px;
-}
+/*.c3-chart-line .c3-line-Salario-mínimo--vital-y-móvil{
+  stroke-width: 4px;
+}*/
