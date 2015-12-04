@@ -157,11 +157,11 @@ angular.module('sueldometroApp')
 	        columns: [
 		        [
 		        'Mi SALARIO', 
-		        ($scope.myData.ano_2011 && $scope.myData.ano_2011 != '')?parseInt($scope.myData.ano_2011):null,
-		        ($scope.myData.ano_2012 && $scope.myData.ano_2012 != '')?parseInt($scope.myData.ano_2012):null,
-		        ($scope.myData.ano_2013 && $scope.myData.ano_2013 != '')?parseInt($scope.myData.ano_2013):null,
-		        ($scope.myData.ano_2014 && $scope.myData.ano_2014 != '')?parseInt($scope.myData.ano_2014):null,
-		        ($scope.myData.ano_2015 && $scope.myData.ano_2015 != '')?parseInt($scope.myData.ano_2015):null
+		        ($scope.myData.ano_2011 && ($scope.myData.ano_2011 != '') )?parseInt($scope.myData.ano_2011):null,
+		        ($scope.myData.ano_2012 && ($scope.myData.ano_2012 != '') )?parseInt($scope.myData.ano_2012):null,
+		        ($scope.myData.ano_2013 && ($scope.myData.ano_2013 != '') )?parseInt($scope.myData.ano_2013):null,
+		        ($scope.myData.ano_2014 && ($scope.myData.ano_2014 != '') )?parseInt($scope.myData.ano_2014):null,
+		        ($scope.myData.ano_2015 && ($scope.myData.ano_2015 != '') )?parseInt($scope.myData.ano_2015):null
 		        ]
 	        ]
 	    });
