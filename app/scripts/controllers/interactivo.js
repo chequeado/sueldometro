@@ -67,8 +67,20 @@ angular.module('sueldometroApp')
 
 	  	$scope.loading = false;
 
+	  	$scope.renderMensaje = function(){
+	  		var t = '';
+	  		var value = parseInt($scope.myData.indice);
+	  		if(value>900){
+	  			t = '¡Qué bien!';
+	  		} else if(value<900) {
+	  			t = '¡Ouch!';
+	  		} else if(value == 900){
+	  			t = '¡Qué coincidencia!';
+	  		}
+	  		$scope.mensaje = t;
+	 	}
 	  	$scope.conclusion = function(){
-	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en la última década, mientras que el del gremio de camioneros lo hizo en 900%";
+	  		return "Mi sueldo varió un "+ parseInt($scope.myData.indice)+"% en la última década, mientras que el del gremio de camioneros lo hizo en 900%";
 	 	}
 	  	$scope.conclusionShare = function(){
 	  		return $filter('escape')($scope.conclusion()+' vía @chequeado - '+'http://chequeado.com');
@@ -200,6 +212,7 @@ angular.module('sueldometroApp')
 		if($scope.myData.ano_2006 && $scope.myData.ano_2015 && $scope.myData.ano_2006!='' && $scope.myData.ano_2015!=''){
 			$scope.variation = true;
 			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2006 )-100;
+			$scope.renderMensaje();
 		} else {
 			$scope.variation = false;
 		}
