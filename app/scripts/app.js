@@ -16,8 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngTable',
-    'chart.js'
+    'ngTable'
   ])
   .config(function () {
     //config
