@@ -84,7 +84,9 @@ angular.module('sueldometroApp')
 	        counts:[],
 	        getData: function($defer, params) {
 	            var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()):data;
-	            $defer.resolve(orderedData);
+	            $defer.resolve(orderedData.filter(function(f){
+	            	return (f.graficar=='si')
+	            }));
 	        }
 	    });
 
@@ -102,7 +104,7 @@ angular.module('sueldometroApp')
 		};
 
 		angular.forEach(data,function(e,i){
-			if(e.ano_2011){
+			if(e.ano_2011 && e.graficar=='si'){
 				chartData[e.titulo] = [
 						parseInt(e.ano_2006),
 						parseInt(e.ano_2007),
