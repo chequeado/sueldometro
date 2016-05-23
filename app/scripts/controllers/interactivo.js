@@ -36,6 +36,8 @@ angular.module('sueldometroApp')
 
   	$scope.pymChild = new pym.Child();
 
+	$scope.loading = true;
+
   	TabletopService.getData().then(function(info){
 
 	  	var data = info;
@@ -44,22 +46,29 @@ angular.module('sueldometroApp')
 
 	  	$scope.myData = {
 			titulo: "MI SALARIO", 
+			ano_2006: null,
+			ano_2007: null,
+			ano_2008: null,
+			ano_2009: null,
+			ano_2010: null,
 			ano_2011: null,
 			ano_2012: null,
 			ano_2013: null,
 			ano_2014: null,
 			ano_2015: null,
-			indice: 261,
-			indice_anual: 52,
+			indice: 0,
+			indice_anual: 0,
 			userData: true,
 			icon: 'glyphicon glyphicon-user'
 	  	};
 
+	  	$scope.loading = false;
+
 	  	$scope.conclusion = function(){
-	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en 5 años, mientras que el del Gobernador lo hizo en +400%";
+	  		return "Mi sueldo varió un "+ $filter('number')($scope.myData.indice,0)+"% en la última década, mientras que el del gremio de camioneros lo hizo en 900%";
 	 	}
 	  	$scope.conclusionShare = function(){
-	  		return $filter('escape')($scope.conclusion()+' vía @unidiversidad_ - '+'http://www.unidiversidad.com.ar/sueldometro');
+	  		return $filter('escape')($scope.conclusion()+' vía @chequeado - '+'http://chequeado.com');
 		}
 
 	  	data.push($scope.myData);

@@ -8,15 +8,16 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='bower_components/ng-table/dist/ng-table.min.css' />
+    <link rel='stylesheet' href='bower_components/components-font-awesome/css/font-awesome.css' />
+    <link rel='stylesheet' href='bower_components/c3/c3.css' />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <!--[if lte IE 8]>
@@ -27,7 +28,9 @@
     <div class="container-fluid">
       
       <div ng-app="sueldometroApp">
+        <div ng-show="loading">cargando...</div>
         <div ng-include="'views/interactivo.html'"></div>
+        <p class="text-muted">Proyecto basado en el código abierto de <a target="_blank" href="http://www.unidiversidad.com.ar/sueldometro">Sueldómetro</a> de <a target="_blank" href="http://www.unidiversidad.com.ar">Unidiversidad</a></p>
       </div>
     
       <!-- 16:9 aspect ratio 
