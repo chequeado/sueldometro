@@ -38,6 +38,8 @@ angular.module('sueldometroApp')
 
 	$scope.loading = true;
 
+	$scope.autocomplete = {};
+
   	TabletopService.getData().then(function(info){
 
 	  	var data = info;
@@ -56,6 +58,7 @@ angular.module('sueldometroApp')
 			ano_2013: null,
 			ano_2014: null,
 			ano_2015: null,
+			graficar: 'si',
 			indice: 0,
 			indice_anual: 0,
 			userData: true,
@@ -119,6 +122,8 @@ angular.module('sueldometroApp')
 					];
 				types[e.titulo] = 'spline';
 				colors[e.titulo] = $scope.colors[i];
+			} else {
+				$scope.autocomplete[e.titulo] = e;
 			}
 		});
 
@@ -186,7 +191,9 @@ angular.module('sueldometroApp')
 		        ]
 	        ]
 	    });
-		$scope.pymChild.sendHeight();
+	    $timeout(function(){
+	    	$scope.pymChild.sendHeight();
+      	},500);
 	};
 
 	$scope.changeVariation = function(){
@@ -197,6 +204,29 @@ angular.module('sueldometroApp')
 			$scope.variation = false;
 		}
 	};
+
+	$scope.setSalario = function(year,salario){
+		$scope.myData['ano_'+year] = $scope.autocomplete[salario]['ano_'+year];
+		$scope.valueChanged();
+	}
+
+	$scope.setSalarioNull = function(year){
+		$scope.myData['ano_'+year] = null;
+		$scope.valueChanged();
+	}
+
+	$scope.setFocus = function(year){
+		angular.element('#textinput-'+year).focus();
+	}
+
+	$scope.changeTab = function($event){
+		angular.element('.btn-tab').removeClass('active');
+		angular.element($event.currentTarget).addClass('active');
+		$timeout(function(){
+	    	$scope.pymChild.sendHeight();
+      	},500);
+	}
+
 
 	$scope.colors = ['#EF4F2F','#ffc468','#988b7b','#25bdbe','#c2beab','#9f0026','#88d9f6','86c6b5','#fa9d3e']
 

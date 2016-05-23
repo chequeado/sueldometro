@@ -11,108 +11,38 @@
 
 				<div class="row">
 
-					<div class="col-sm-2">
-						Completá los datos de tu salario mensual aproximado >>
+					<div class="col-sm-12">
+						Completá los datos de tu salario mensual aproximado en los siguientes años:
 					</div>
 
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2006</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2006">
-							</div>
-					  	</div>
+					<div ng-repeat="a in labels">
+						<div class="col-sm-3">
+							<hr>
+							<div class="form-group">
+								<div class="btn-group"> 
+									<button type="button" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Año {{a}}
+										<span class="caret"></span>
+										<span class="sr-only">Toggle Dropdown</span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a ng-click="setFocus(a)">¡Lo recuerdo!</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a ng-click="setSalario(a,'minimo')">Salario mínimo</a></li>
+										<li><a ng-click="setSalario(a,'promedio')">Salario promedio</a></li>
+										<li><a ng-click="setSalario(a,'maximo')">Salario máximo</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a ng-click="setSalarioNull(a)">No lo recuerdo :(</a></li>
+									</ul>
+								</div>
+								<div class="input-group">
+								  	<span class="input-group-addon" id="basic-addon-{{a}}">$</span>
+									<input id="textinput-{{a}}" name="textinput-{{a}}" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData['ano_'+a]">
+								</div>
+						  	</div>
+						</div>
 					</div>
 
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2007</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2007">
-							</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2008</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2008">
-							</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2009</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2009">
-							</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2010</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2010">
-							</div>
-					  	</div>
-					</div>					
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput1">2011</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2011">
-							</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput2">2012</label>
-							<div class="input-group">
-							  	<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput2" name="textinput2" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2012">
-							</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput3">2013</label>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput3" name="textinput3" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2013">
-					  		</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput4">2014</label>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput4" name="textinput4" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2014">
-					  		</div>
-					  	</div>
-					</div>
-
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label for="textinput5">2015</label>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">$</span>
-								<input id="textinput5" name="textinput5" placeholder="" class="form-control input-md" type="text" step="1000" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2015">
-					  		</div>
-					  	</div>
-					</div>
 
 				</div>
 
@@ -132,10 +62,10 @@
 
 		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 			<div class="btn-group" role="group">
-				<a href="#chart" aria-controls="chart" role="tab" data-toggle="tab" class="btn btn-default">Gráfico</a>
+				<a href="#chart" aria-controls="chart" role="tab" ng-click="changeTab($event)" data-toggle="tab" class="btn btn-default btn-tab active">Gráfico</a>
 			</div>
 			<div class="btn-group" role="group">
-				<a href="#table" aria-controls="table" role="tab" data-toggle="tab" class="btn btn-default">Tabla</a>
+				<a href="#table" aria-controls="table" role="tab" ng-click="changeTab($event)" data-toggle="tab" class="btn btn-default btn-tab">Tabla</a>
 			</div>
 		</div>
 
