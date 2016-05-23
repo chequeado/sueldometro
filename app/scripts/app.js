@@ -41,7 +41,7 @@ angular
       var that = this;
       return $q(function(resolve, reject) {
         if(!that.data){
-          Tabletop.init( { key: '1pwPoKkIzwox4LBgpnCr2tIsaNLeqFFA1U5VsuWwLJqg',
+          Tabletop.init( { key: '1XDxFbkRB3uoLvig7n-Iq7YXE9AvuY4UR8d4VGigCHds',
                   callback: function(data, tabletop) { 
                     that.data = data;
                     resolve(angular.copy(that.data));

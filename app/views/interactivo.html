@@ -17,6 +17,55 @@
 
 					<div class="col-sm-2">
 						<div class="form-group">
+							<label for="textinput1">2006</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2006">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput1">2007</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2007">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput1">2008</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2008">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput1">2009</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2009">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label for="textinput1">2010</label>
+							<div class="input-group">
+							  	<span class="input-group-addon" id="basic-addon1">$</span>
+								<input id="textinput1" name="textinput1" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData.ano_2010">
+							</div>
+					  	</div>
+					</div>					
+					<div class="col-sm-2">
+						<div class="form-group">
 							<label for="textinput1">2011</label>
 							<div class="input-group">
 							  	<span class="input-group-addon" id="basic-addon1">$</span>
@@ -105,6 +154,21 @@
 			        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
 			            <td data-title="'Título'" data-sortable="'titulo'">
 			                <span class="{{d.icon}}"></span>     {{d.titulo}}
+			            </td>
+			            <td class="text-right" data-title="'2006'" data-sortable="'ano_2006'">
+			                <span ng-show="d.ano_2006">${{d.ano_2006}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2007'" data-sortable="'ano_2007'">
+			                <span ng-show="d.ano_2007">${{d.ano_2007}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2008'" data-sortable="'ano_2008'">
+			                <span ng-show="d.ano_2008">${{d.ano_2008}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2009'" data-sortable="'ano_2009'">
+			                <span ng-show="d.ano_2009">${{d.ano_2009}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2010'" data-sortable="'ano_2010'">
+			                <span ng-show="d.ano_2010">${{d.ano_2010}}</span>
 			            </td>
 			            <td class="text-right" data-title="'2011'" data-sortable="'ano_2011'">
 			                <span ng-show="d.ano_2011">${{d.ano_2011}}</span>

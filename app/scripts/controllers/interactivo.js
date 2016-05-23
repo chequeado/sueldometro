@@ -81,7 +81,7 @@ angular.module('sueldometroApp')
 
 
 		var chartData = {
-			'x': ["2011","2012","2013","2014","2015"]
+			'x': ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"]
 		};
 
 		var types = {
@@ -95,6 +95,11 @@ angular.module('sueldometroApp')
 		angular.forEach(data,function(e,i){
 			if(e.ano_2011){
 				chartData[e.titulo] = [
+						parseInt(e.ano_2006),
+						parseInt(e.ano_2007),
+						parseInt(e.ano_2008),
+						parseInt(e.ano_2009),
+						parseInt(e.ano_2010),
 						parseInt(e.ano_2011),
 						parseInt(e.ano_2012),
 						parseInt(e.ano_2013),
@@ -126,7 +131,7 @@ angular.module('sueldometroApp')
 			  }
 			},
 			line: {
-			  connectNull: true
+			  connectNull: false
 			},
 			tooltip: {
 		        grouped: false,
@@ -139,7 +144,7 @@ angular.module('sueldometroApp')
 		    }
 		});
 
-		$scope.labels = ["2011","2012","2013","2014","2015"];
+		$scope.labels = ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"];
 		$timeout(function(){
 	    	$scope.pymChild.sendHeight();
       	},500);
@@ -157,6 +162,11 @@ angular.module('sueldometroApp')
 	        columns: [
 		        [
 		        'Mi SALARIO', 
+		        ($scope.myData.ano_2006 && ($scope.myData.ano_2006 != '') )?parseInt($scope.myData.ano_2006):null,
+		        ($scope.myData.ano_2007 && ($scope.myData.ano_2007 != '') )?parseInt($scope.myData.ano_2007):null,
+		        ($scope.myData.ano_2008 && ($scope.myData.ano_2008 != '') )?parseInt($scope.myData.ano_2008):null,
+		        ($scope.myData.ano_2009 && ($scope.myData.ano_2009 != '') )?parseInt($scope.myData.ano_2009):null,
+		        ($scope.myData.ano_2010 && ($scope.myData.ano_2010 != '') )?parseInt($scope.myData.ano_2010):null,
 		        ($scope.myData.ano_2011 && ($scope.myData.ano_2011 != '') )?parseInt($scope.myData.ano_2011):null,
 		        ($scope.myData.ano_2012 && ($scope.myData.ano_2012 != '') )?parseInt($scope.myData.ano_2012):null,
 		        ($scope.myData.ano_2013 && ($scope.myData.ano_2013 != '') )?parseInt($scope.myData.ano_2013):null,
@@ -169,9 +179,9 @@ angular.module('sueldometroApp')
 	};
 
 	$scope.changeVariation = function(){
-		if($scope.myData.ano_2011 && $scope.myData.ano_2015 && $scope.myData.ano_2011!='' && $scope.myData.ano_2015!=''){
+		if($scope.myData.ano_2006 && $scope.myData.ano_2015 && $scope.myData.ano_2006!='' && $scope.myData.ano_2015!=''){
 			$scope.variation = true;
-			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2011 )-100;
+			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2006 )-100;
 		} else {
 			$scope.variation = false;
 		}
