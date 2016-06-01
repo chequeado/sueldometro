@@ -12,7 +12,7 @@
 				<div class="row">
 
 					<div class="col-sm-12">
-						Completá los datos de tu salario mensual aproximado en los siguientes años:
+						Completá los datos de tu salario mensual aproximado EN BRUTO para los siguientes años:
 					</div>
 
 					<div ng-repeat="a in labels">
@@ -65,6 +65,12 @@
 			<div class="btn-group" role="group">
 				<a href="#table" aria-controls="table" role="tab" ng-click="changeTab($event)" data-toggle="tab" class="btn btn-default btn-tab">Tabla</a>
 			</div>
+			<div class="btn-group" role="group">
+				<a href="#chart-indice" aria-controls="chart" role="tab" ng-click="changeTab($event)" data-toggle="tab" class="btn btn-default btn-tab">Gráfico Índice</a>
+			</div>
+			<div class="btn-group" role="group">
+				<a href="#table-indice" aria-controls="table" role="tab" ng-click="changeTab($event)" data-toggle="tab" class="btn btn-default btn-tab">Tabla Índice</a>
+			</div>
 		</div>
 
 		  <!-- Tab panes -->
@@ -76,6 +82,12 @@
 		    
 		    </div>
 		    
+		    <div role="tabpanel" class="tab-pane" id="chart-indice">
+		    	
+		    	<div id="chart-container-indice"></div>
+		    
+		    </div>
+
 		    <div role="tabpanel" class="tab-pane" id="table">
 		    
 		    	<table class="table table-striped" ng-table="tableParams" class="table">
@@ -112,6 +124,24 @@
 			            </td>
 			            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
 			                <span ng-show="d.ano_2015">${{d.ano_2015}}</span>
+			            </td>
+			        </tr>
+			    </table>
+
+			</div>
+
+		    <div role="tabpanel" class="tab-pane" id="table-indice">
+
+			   	<table class="table table-striped" ng-table="tableParams" class="table">
+			        <tr ng-repeat="d in $data" ng-class="{'user-data':d.userData}">
+			            <td data-title="'Título'" data-sortable="'titulo'">
+			                <span class="{{d.icon}}"></span>     {{d.titulo}}
+			            </td>
+			            <td class="text-right" data-title="'Índice de aumento'" data-sortable="'indice'">
+			                <span ng-show="d.indice">{{d.indice}}%</span>
+			            </td>
+			            <td class="text-right" data-title="'Índice de aumento anual'" data-sortable="'indice_anual'">
+			                <span ng-show="d.indice_anual">{{d.indice_anual}}%</span>
 			            </td>
 			        </tr>
 			    </table>

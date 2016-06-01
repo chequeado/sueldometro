@@ -88,6 +88,8 @@ angular.module('sueldometroApp')
 
 	  	data.push($scope.myData);
 
+	  	$scope.rawData = data;
+
 		$scope.tableParams = new ngTableParams({
 	        page: 1,            // show first page
 	        count: data.length,          // count per page
@@ -172,6 +174,49 @@ angular.module('sueldometroApp')
 		    }
 		});
 
+		$scope.chart_index = c3.generate({
+			bindto: '#chart-container-indice',
+			data: {
+		        json: $scope.rawData.filter(function(e){
+		        	return (e.graficar=='si');
+		        }),
+		        type: 'bar',
+		        keys: {
+                	x: 'titulo',
+	                value: ['indice_anual','indice'],
+	            },
+	            labels: true
+		    },
+		    legend: {
+		        position: 'right'
+		    },
+	        size: {
+			  height: 500
+			},
+			axis: {
+			  x: {
+			  	type: 'category',
+			    padding: {
+			      left: 0.2,
+			      right: 0.2,
+			    }
+			  }
+			},
+			line: {
+			  connectNull: false
+			},
+			padding: {
+			  bottom: 30
+			},
+			tooltip: {
+		        format: {
+		            value: function (value, ratio, id) {
+		                return value+'%';
+		            }
+		        }
+		    }
+		});
+
 		$scope.labels = ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"];
 		$timeout(function(){
 	    	$scope.pymChild.sendHeight();
@@ -181,8 +226,8 @@ angular.module('sueldometroApp')
 
 	$scope.valueChanged = function(){
 		$scope.tableParams.reload();
-		$scope.refreshChart();
 		$scope.changeVariation();
+		$scope.refreshChart();
 	};
 
 	$scope.refreshChart = function(){
@@ -203,6 +248,18 @@ angular.module('sueldometroApp')
 		        ]
 	        ]
 	    });
+	    console.log($scope.rawData);
+	    $scope.chart_index.load({
+	        	json: $scope.rawData.filter(function(e){
+		        	return (e.graficar=='si');
+		        }),
+		        type: 'bar',
+		        keys: {
+                	x: 'titulo',
+	                value: ['indice_anual','indice'],
+	            },
+	            labels: true
+	    });
 	    $timeout(function(){
 	    	$scope.pymChild.sendHeight();
       	},500);
@@ -211,7 +268,8 @@ angular.module('sueldometroApp')
 	$scope.changeVariation = function(){
 		if($scope.myData.ano_2006 && $scope.myData.ano_2015 && $scope.myData.ano_2006!='' && $scope.myData.ano_2015!=''){
 			$scope.variation = true;
-			$scope.myData.indice = (( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2006 )-100;
+			$scope.myData.indice = Math.round((( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2006 )-100);
+			$scope.myData.indice_anual = $scope.myData.indice / 10;
 			$scope.renderMensaje();
 		} else {
 			$scope.variation = false;
