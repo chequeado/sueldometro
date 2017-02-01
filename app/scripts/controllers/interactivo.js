@@ -34,7 +34,7 @@ angular.module('sueldometroApp')
   	})
   .controller('InteractivoCtrl', function ($scope,$filter,TabletopService,ngTableParams,$timeout,$location) {
 
-  	$scope.pymChild = new pym.Child();
+  	$scope.pymChild = new pym.Child({ polling: 500 });
 
 	$scope.loading = true;
 
@@ -58,6 +58,7 @@ angular.module('sueldometroApp')
 			ano_2013: null,
 			ano_2014: null,
 			ano_2015: null,
+			ano_2016: null,
 			graficar: 'si',
 			indice: 0,
 			indice_anual: 0,
@@ -109,7 +110,7 @@ angular.module('sueldometroApp')
 
 
 		var chartData = {
-			'x': ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"]
+			'x': ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016"]
 		};
 
 		var types = {
@@ -132,7 +133,8 @@ angular.module('sueldometroApp')
 						parseInt(e.ano_2012),
 						parseInt(e.ano_2013),
 						parseInt(e.ano_2014),
-						parseInt(e.ano_2015)
+						parseInt(e.ano_2015),
+						parseInt(e.ano_2016)
 					];
 				types[e.titulo] = 'spline';
 				colors[e.titulo] = $scope.colors[i];
@@ -217,10 +219,7 @@ angular.module('sueldometroApp')
 		    }
 		});
 
-		$scope.labels = ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"];
-		$timeout(function(){
-	    	$scope.pymChild.sendHeight();
-      	},500);
+		$scope.labels = ["2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016"];
 
   	});
 
@@ -244,11 +243,12 @@ angular.module('sueldometroApp')
 		        ($scope.myData.ano_2012 && ($scope.myData.ano_2012 != '') )?parseInt($scope.myData.ano_2012):null,
 		        ($scope.myData.ano_2013 && ($scope.myData.ano_2013 != '') )?parseInt($scope.myData.ano_2013):null,
 		        ($scope.myData.ano_2014 && ($scope.myData.ano_2014 != '') )?parseInt($scope.myData.ano_2014):null,
-		        ($scope.myData.ano_2015 && ($scope.myData.ano_2015 != '') )?parseInt($scope.myData.ano_2015):null
+		        ($scope.myData.ano_2015 && ($scope.myData.ano_2015 != '') )?parseInt($scope.myData.ano_2015):null,
+		        ($scope.myData.ano_2015 && ($scope.myData.ano_2016 != '') )?parseInt($scope.myData.ano_2016):null
 		        ]
 	        ]
 	    });
-	    console.log($scope.rawData);
+
 	    $scope.chart_index.load({
 	        	json: $scope.rawData.filter(function(e){
 		        	return (e.graficar=='si');
@@ -260,15 +260,13 @@ angular.module('sueldometroApp')
 	            },
 	            labels: true
 	    });
-	    $timeout(function(){
-	    	$scope.pymChild.sendHeight();
-      	},500);
+
 	};
 
 	$scope.changeVariation = function(){
-		if($scope.myData.ano_2006 && $scope.myData.ano_2015 && $scope.myData.ano_2006!='' && $scope.myData.ano_2015!=''){
+		if($scope.myData.ano_2006 && $scope.myData.ano_2016 && $scope.myData.ano_2006!='' && $scope.myData.ano_2016!=''){
 			$scope.variation = true;
-			$scope.myData.indice = Math.round((( $scope.myData.ano_2015 * 100 ) / $scope.myData.ano_2006 )-100);
+			$scope.myData.indice = Math.round((( $scope.myData.ano_2016 * 100 ) / $scope.myData.ano_2006 )-100);
 			$scope.myData.indice_anual = $scope.myData.indice / 10;
 			$scope.renderMensaje();
 		} else {
@@ -290,15 +288,27 @@ angular.module('sueldometroApp')
 		angular.element('#textinput-'+year).focus();
 	}
 
+	$scope.completeMode = true;
+	$scope.anios = d3.range(2006,2017);
+	$scope.autocompleteAll = function(dimension){
+		$scope.completeMode = dimension;
+		if(dimension){
+			angular.forEach($scope.anios,function(a){
+				$scope.setSalario(a,dimension)
+			});
+		} else {
+			angular.forEach($scope.anios,function(a){
+				$scope.setSalarioNull(a)
+			});
+		}
+	}
+
 	$scope.changeTab = function($event){
 		angular.element('.btn-tab').removeClass('active');
 		angular.element($event.currentTarget).addClass('active');
-		$timeout(function(){
-	    	$scope.pymChild.sendHeight();
-      	},500);
 	}
 
 
-	$scope.colors = ['#EF4F2F','#ffc468','#988b7b','#25bdbe','#c2beab','#9f0026','#88d9f6','86c6b5','#fa9d3e']
+	$scope.colors = ['#EF4F2F','#ffc468','#988b7b','#25bdbe','#c2beab','#9f0026','#88d9f6','#86c6b5','#fa9d3e']
 
   });

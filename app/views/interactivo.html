@@ -15,7 +15,14 @@
 						Completá los datos de tu salario mensual aproximado EN BRUTO para los siguientes años:
 					</div>
 
-					<div ng-repeat="a in labels">
+					<div class="col-sm-12">
+						<a class="btn btn-default" ng-click="autocompleteAll('minimo')">Trabajador sueldo mínimo</a>
+						<a class="btn btn-default" ng-click="autocompleteAll('promedio')">Trabajador sueldo promedio</a>
+						<a class="btn btn-default" ng-click="autocompleteAll('maximo')">Trabajador sueldo máximo</a>
+						<a class="btn btn-default" ng-click="autocompleteAll(false)">Completar mi sueldo</a>
+					</div>
+
+					<div ng-show="!completeMode" ng-repeat="a in labels">
 						<div class="col-sm-3">
 							<hr>
 							<div class="form-group">
@@ -33,7 +40,7 @@
 										<li><a ng-click="setSalario(a,'maximo')">Salario máximo</a></li>
 									</ul>
 								</div>
-								<div class="input-group">
+								<div class="input-group input-group-chq">
 								  	<span class="input-group-addon" id="basic-addon-{{a}}">$</span>
 									<input id="textinput-{{a}}" name="textinput-{{a}}" placeholder="" class="form-control input-md" type="text" step="1000" numbers-only="numbers-only" required="required" ng-change="valueChanged()" min="0" maxlength="5" ng-model="myData['ano_'+a]">
 								</div>
@@ -124,6 +131,9 @@
 			            </td>
 			            <td class="text-right" data-title="'2015'" data-sortable="'ano_2015'">
 			                <span ng-show="d.ano_2015">${{d.ano_2015}}</span>
+			            </td>
+			            <td class="text-right" data-title="'2016'" data-sortable="'ano_2016'">
+			                <span ng-show="d.ano_2016">${{d.ano_2016}}</span>
 			            </td>
 			        </tr>
 			    </table>

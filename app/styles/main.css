@@ -84,3 +84,12 @@ table .user-data {
 .tab-content{
   margin-top: 30px;
 }
+
+.input-group-chq .input-md{
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+
+.input-group-chq .input-group-addon{
+  border-radius: 0px !important;
+}
